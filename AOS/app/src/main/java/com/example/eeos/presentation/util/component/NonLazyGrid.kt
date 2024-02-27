@@ -1,4 +1,4 @@
-package com.example.eeos.presentation.util.ComponentUtil
+package com.example.eeos.presentation.util.component
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
