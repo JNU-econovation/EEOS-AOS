@@ -28,6 +28,7 @@
 
     <string name="active_status_dialog_save_active_status">회원 상태 저장</string>
     <string name="active_status_dialog_logout">로그아웃</string>
+    <string name="active_status_dialog_delete_account">계정을 삭제하고 싶으신가요?</string>
 
 
     <!--Detail 화면 string 리소스-->
@@ -47,10 +48,13 @@
     <string name="detail_bottom_sheet_description_cant_change_program_end">종료된 행사는 출석 상태를 변경할 수 없습니다.</string>
 
 
-    <!--Attend Status Confirm Dialog-->
-    <string name="confirm_dialog_container">출석 상태가 "%1$s"으로 변경됩니다.</string>
+    <!--Confirm Dialog-->
+    <string name="confirm_dialog_container_change_active_status">출석 상태가 "%1$s"으로 변경됩니다.</string>
+    <string name="confirm_dialog_container_delete_account">정말로 탈퇴 하시겠습니까?\n계정 삭제 시 생성한 행사는 유지되며,\n출석 관련 정보는 삭제됩니다.</string>
     <string name="confirm_dialog_button_text_dismiss">취소</string>
     <string name="confirm_dialog_button_text_confirm">확인</string>
+
+
 
 
     <!--ContentDescriptions-->
