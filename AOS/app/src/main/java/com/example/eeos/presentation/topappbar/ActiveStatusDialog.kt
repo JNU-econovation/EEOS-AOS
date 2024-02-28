@@ -15,6 +15,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -34,7 +35,8 @@ fun ActiveStatusDialog(
     activeStatus: String,
     onSaveStatusBtnClick: (String) -> Unit,
     onDismissRequest: () -> Unit,
-    onLogout: () -> Unit
+    onLogout: () -> Unit,
+    deleteAccountDialogState: MutableState<Boolean>
 ) {
     val tempActiveStatus = remember { mutableStateOf(activeStatus) }
 
@@ -131,25 +133,45 @@ fun ActiveStatusDialog(
                         )
                     )
                 )
-                SaveActiveStatusButton(
-                    onClick = { onSaveStatusBtnClick(tempActiveStatus.value) }
-                )
-                Spacer(
-                    modifier = Modifier.height(
-                        dimensionResource(
-                            id = R.dimen.margin_active_status_dialog_between_long_buttons
+                Column(
+                    horizontalAlignment = Alignment.End,
+                ) {
+                    SaveActiveStatusButton(
+                        onClick = { onSaveStatusBtnClick(tempActiveStatus.value) }
+                    )
+                    Spacer(
+                        modifier = Modifier.height(
+                            dimensionResource(
+                                id = R.dimen.margin_active_status_dialog_between_long_buttons
+                            )
                         )
                     )
-                )
-                LogoutButton(
-                    onClick = {
-                        EEOSApplication.prefs.access = null
-                        EEOSApplication.prefs.refresh = null
+                    LogoutButton(
+                        onClick = {
+                            EEOSApplication.prefs.access = null
+                            EEOSApplication.prefs.refresh = null
 
-                        onDismissRequest()
-                        onLogout()
-                    }
-                )
+                            onDismissRequest()
+                            onLogout()
+                        }
+                    )
+                    Spacer(
+                        modifier = Modifier.height(
+                            dimensionResource(
+                                id = R.dimen.margin_active_status_dialog_between_long_button_and_text_button
+                            )
+                        )
+                    )
+                    Text(
+                        text = stringResource(id = R.string.active_status_dialog_delete_account),
+                        color = colorResource(id = R.color.gray_500),
+                        style = MaterialTheme.typography.labelSmall,
+                        modifier = Modifier.clickable {
+                            deleteAccountDialogState.value = true
+                            onDismissRequest()
+                        }
+                    )
+                }
             }
         }
     }
@@ -164,7 +186,10 @@ private fun MemberStatusDialogPreview() {
             activeStatus = "AM",
             onSaveStatusBtnClick = {},
             onDismissRequest = {},
-            onLogout = {}
+            onLogout = {},
+            deleteAccountDialogState = remember {
+                mutableStateOf(false)
+            }
         )
     }
 }
