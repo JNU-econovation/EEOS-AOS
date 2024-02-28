@@ -41,7 +41,7 @@ fun ConfirmAttendStatusDialog(
                         id = R.dimen.width_confirm_dialog
                     ),
                     height = dimensionResource(
-                        id = R.dimen.height_confirm_dialog
+                        id = R.dimen.height_confirm_dialog_attend_status
                     )
                 ),
             shape = RoundedCornerShape(dimensionResource(id = R.dimen.size_corner_20dp)),

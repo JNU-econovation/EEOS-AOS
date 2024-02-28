@@ -26,7 +26,7 @@ import androidx.compose.ui.window.Dialog
 import com.example.eeos.R
 
 @Composable
-fun ConfirmAttendStatusDialog(
+fun ConfirmDeleteAccountDialog(
     onConfirmRequest: () -> Unit,
     onDismissRequest: () -> Unit,
 ) {
@@ -40,7 +40,7 @@ fun ConfirmAttendStatusDialog(
                         id = R.dimen.width_confirm_dialog
                     ),
                     height = dimensionResource(
-                        id = R.dimen.height_confirm_dialog
+                        id = R.dimen.height_confirm_dialog_delete_account
                     )
                 ),
             shape = RoundedCornerShape(dimensionResource(id = R.dimen.size_corner_20dp)),
@@ -133,7 +133,7 @@ private fun ConfirmDialogButton(onClick: () -> Unit, innerText: String) {
 @Composable
 private fun ConfirmAttendStatusDialogPreview() {
     MaterialTheme {
-        ConfirmAttendStatusDialog(
+        ConfirmDeleteAccountDialog(
             onConfirmRequest = {},
             onDismissRequest = {},
         )

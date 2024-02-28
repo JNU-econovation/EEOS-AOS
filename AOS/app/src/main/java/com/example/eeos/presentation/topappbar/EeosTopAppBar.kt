@@ -37,7 +37,7 @@ fun EeosTopAppBar(
     val deleteAccountDialogState = remember { mutableStateOf(false) }
 
     if (deleteAccountDialogState.value) {
-        ConfirmAttendStatusDialog(
+        ConfirmDeleteAccountDialog(
             onConfirmRequest = { /* TODO: 계정 삭제 API 연결 */ },
             onDismissRequest = { deleteAccountDialogState.value = false },
         )
