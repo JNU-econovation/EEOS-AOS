@@ -40,7 +40,7 @@
 
     <!--Active Status Dialog Screen Dimensions-->
     <dimen name="size_member_status_dialog_background_width">300dp</dimen>
-    <dimen name="size_member_status_dialog_background_height">345dp</dimen>
+    <dimen name="size_member_status_dialog_background_height">380dp</dimen>
     <dimen name="margin_member_status_dialog_background_top">17dp</dimen>
     <dimen name="margin_member_status_dialog_background_side">15dp</dimen>
     <dimen name="margin_member_status_dialog_background_bottom">14dp</dimen>
@@ -60,6 +60,7 @@
     <dimen name="width_active_status_dialog_long_button">275dp</dimen>
     <dimen name="height_active_status_dialog_long_button">40dp</dimen>
     <dimen name ="margin_active_status_dialog_between_long_buttons">9dp</dimen>
+    <dimen name ="margin_active_status_dialog_between_long_button_and_text_button">13dp</dimen>
 
 
     <!--Detail Screen Dimensions-->
