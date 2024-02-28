@@ -52,14 +52,6 @@ fun AttendStatusButtons(
                 },
                 onDismissRequest = { attendStatusDialogState.value = false }
             )
-            /*ConfirmAttendStatusDialog(
-                onConfirmRequest = {
-                    putUserAttendStatus(tempAttendStatus.value)
-                    attendStatusDialogState.value = false
-                },
-                onDismissRequest = { attendStatusDialogState.value = false },
-                attendStatus = attendStatusMap[tempAttendStatus.value]!!
-            )*/
         }
 
         val onChangeAttendStatus = { attendStatus: String ->

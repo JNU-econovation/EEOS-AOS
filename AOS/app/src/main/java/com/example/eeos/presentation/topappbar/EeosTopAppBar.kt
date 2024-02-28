@@ -45,10 +45,6 @@ fun EeosTopAppBar(
             onConfirmRequest = { /*TODO: 계정 삭제 API 연결*/ },
             onDismissRequest = { deleteAccountDialogState.value = false }
         )
-        /*ConfirmDeleteAccountDialog(
-            onConfirmRequest = { *//* TODO: 계정 삭제 API 연결 *//* },
-            onDismissRequest = { deleteAccountDialogState.value = false },
-        )*/
     }
 
     if (memberStatusDialogState.value) {
