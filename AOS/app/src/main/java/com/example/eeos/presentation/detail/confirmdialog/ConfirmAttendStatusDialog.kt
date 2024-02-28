@@ -58,7 +58,7 @@ fun ConfirmAttendStatusDialog(
             ) {
                 Text(
                     text = String.format(
-                        stringResource(R.string.confirm_dialog_container),
+                        stringResource(R.string.confirm_dialog_container_change_active_status),
                         attendStatus
                     ),
                     style = MaterialTheme.typography.bodySmall
