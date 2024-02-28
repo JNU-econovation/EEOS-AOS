@@ -18,10 +18,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.eeos.R
 import com.example.eeos.consts.memberStatusMap
+import com.example.eeos.presentation.util.component.ConfirmDialog
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -37,10 +39,16 @@ fun EeosTopAppBar(
     val deleteAccountDialogState = remember { mutableStateOf(false) }
 
     if (deleteAccountDialogState.value) {
-        ConfirmDeleteAccountDialog(
-            onConfirmRequest = { /* TODO: 계정 삭제 API 연결 */ },
-            onDismissRequest = { deleteAccountDialogState.value = false },
+        ConfirmDialog(
+            text = stringResource(id = R.string.confirm_dialog_container_delete_account),
+            dialogHeight = R.dimen.height_confirm_dialog_delete_account,
+            onConfirmRequest = { /*TODO: 계정 삭제 API 연결*/ },
+            onDismissRequest = { deleteAccountDialogState.value = false }
         )
+        /*ConfirmDeleteAccountDialog(
+            onConfirmRequest = { *//* TODO: 계정 삭제 API 연결 *//* },
+            onDismissRequest = { deleteAccountDialogState.value = false },
+        )*/
     }
 
     if (memberStatusDialogState.value) {

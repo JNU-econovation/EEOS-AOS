@@ -21,7 +21,7 @@ import com.example.eeos.consts.ProgramStatus
 import com.example.eeos.consts.attendStatusMap
 import com.example.eeos.presentation.detail.ProgramDetailUiState
 import com.example.eeos.presentation.detail.ProgramDetailViewModel
-import com.example.eeos.presentation.detail.confirmdialog.ConfirmAttendStatusDialog
+import com.example.eeos.presentation.util.component.ConfirmDialog
 
 @Composable
 fun AttendStatusButtons(
@@ -40,14 +40,26 @@ fun AttendStatusButtons(
 
         val attendStatusDialogState = remember { mutableStateOf(false) }
         if (attendStatusDialogState.value) {
-            ConfirmAttendStatusDialog(
+            ConfirmDialog(
+                text = String.format(
+                    stringResource(R.string.confirm_dialog_container_change_active_status),
+                    attendStatusMap[tempAttendStatus.value]!!
+                ),
+                dialogHeight = R.dimen.height_confirm_dialog_attend_status,
+                onConfirmRequest = {
+                    putUserAttendStatus(tempAttendStatus.value)
+                    attendStatusDialogState.value = false
+                },
+                onDismissRequest = { attendStatusDialogState.value = false }
+            )
+            /*ConfirmAttendStatusDialog(
                 onConfirmRequest = {
                     putUserAttendStatus(tempAttendStatus.value)
                     attendStatusDialogState.value = false
                 },
                 onDismissRequest = { attendStatusDialogState.value = false },
                 attendStatus = attendStatusMap[tempAttendStatus.value]!!
-            )
+            )*/
         }
 
         val onChangeAttendStatus = { attendStatus: String ->
@@ -56,7 +68,11 @@ fun AttendStatusButtons(
         }
 
         AttendButton(
-            selectedAttendStatus = if (programDetailUiState.value.programStatus == ProgramStatus.end) { "" } else { selectedAttendStatus }
+            selectedAttendStatus = if (programDetailUiState.value.programStatus == ProgramStatus.end) {
+                ""
+            } else {
+                selectedAttendStatus
+            }
         ) {
             if (attendanceUiState.value.userAttendStatus != AttendStatus.nonRelated &&
                 programDetailUiState.value.programStatus == ProgramStatus.active
@@ -65,7 +81,11 @@ fun AttendStatusButtons(
             }
         }
         LateButton(
-            selectedAttendStatus = if (programDetailUiState.value.programStatus == ProgramStatus.end) { "" } else { selectedAttendStatus }
+            selectedAttendStatus = if (programDetailUiState.value.programStatus == ProgramStatus.end) {
+                ""
+            } else {
+                selectedAttendStatus
+            }
         ) {
             if (attendanceUiState.value.userAttendStatus != AttendStatus.nonRelated &&
                 programDetailUiState.value.programStatus == ProgramStatus.active
@@ -74,7 +94,11 @@ fun AttendStatusButtons(
             }
         }
         AbsentButton(
-            selectedAttendStatus = if (programDetailUiState.value.programStatus == ProgramStatus.end) { "" } else { selectedAttendStatus }
+            selectedAttendStatus = if (programDetailUiState.value.programStatus == ProgramStatus.end) {
+                ""
+            } else {
+                selectedAttendStatus
+            }
         ) {
             if (attendanceUiState.value.userAttendStatus != AttendStatus.nonRelated &&
                 programDetailUiState.value.programStatus == ProgramStatus.active
