@@ -56,7 +56,6 @@ class TopAppBarViewModel @Inject constructor(
                 }
                 .suspendOnError {
                     val errorCode = getErrorCode(this.errorBody!!.string())
-
                 }
                 .suspendOnException {
                     this.exception
@@ -81,7 +80,6 @@ class TopAppBarViewModel @Inject constructor(
                 }
                 .suspendOnError {
                     val errorCode = getErrorCode(this.errorBody!!.string())
-
                 }
                 .suspendOnException {
                     this.exception

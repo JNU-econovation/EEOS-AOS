@@ -23,8 +23,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.eeos.R
-import com.example.eeos.consts.programCategory
 import com.example.eeos.consts.categoryChips
+import com.example.eeos.consts.programCategory
 import com.example.eeos.consts.programStatus
 import com.example.eeos.consts.programStatusChips
 import com.example.eeos.presentation.topappbar.EeosTopAppBar
