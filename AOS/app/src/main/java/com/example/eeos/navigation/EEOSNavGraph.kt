@@ -49,7 +49,9 @@ fun EEOSNavGraph(
             ),
         ) {
             var isLogout = it.arguments?.getBoolean(EEOSDestinationsArgs.IS_LOGOUT_ARG) ?: false
-            var isAccountDeleted = it.arguments?.getBoolean(EEOSDestinationsArgs.IS_ACCOUNT_DELETED_ARG) ?: false
+            var isAccountDeleted = it.arguments?.getBoolean(
+                EEOSDestinationsArgs.IS_ACCOUNT_DELETED_ARG
+            ) ?: false
             val loginViewModel = hiltViewModel<LoginViewModel>()
             val loginUiState = loginViewModel.loginUiState.collectAsState()
 
