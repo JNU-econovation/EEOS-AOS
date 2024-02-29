@@ -6,6 +6,7 @@ import com.example.eeos.data.model.remote.response.ResponsePutActiveStatusDto
 import com.example.eeos.data.model.remote.response.base.BaseResponse
 import com.skydoves.sandwich.ApiResponse
 import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.PUT
 
@@ -17,4 +18,7 @@ interface InfoService {
     suspend fun putActiveStatus(
         @Body requestPutActiveStatusDto: RequestPutActiveStatusDto
     ): ApiResponse<BaseResponse<ResponsePutActiveStatusDto>>
+
+    @DELETE("members")
+    suspend fun deleteUser(): ApiResponse<BaseResponse<Unit>>
 }

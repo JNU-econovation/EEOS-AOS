@@ -18,4 +18,7 @@ class InfoDataSource @Inject constructor(
         requestPutActiveStatusDto: RequestPutActiveStatusDto
     ): ApiResponse<BaseResponse<ResponsePutActiveStatusDto>> =
         infoService.putActiveStatus(requestPutActiveStatusDto)
+
+    suspend fun deleteUser(): ApiResponse<BaseResponse<Unit>> =
+        infoService.deleteUser()
 }
