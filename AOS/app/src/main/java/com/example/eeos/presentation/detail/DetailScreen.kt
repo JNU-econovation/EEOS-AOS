@@ -44,6 +44,8 @@ fun DetailScreen(
     putActiveStatus: (String) -> Unit,
     onLogoClick: () -> Unit,
     onLogout: () -> Unit,
+    onDeleteAccount: () -> Unit,
+    onDeleteSuccess: () -> Unit
 ) {
     val memberStatusDialogState = remember { mutableStateOf(false) }
 
@@ -61,7 +63,9 @@ fun DetailScreen(
                 putActiveStatus = putActiveStatus,
                 onLogoClick = onLogoClick,
                 onLogout = onLogout,
-                memberStatusDialogState = memberStatusDialogState
+                onDeleteAccount = onDeleteAccount,
+                memberStatusDialogState = memberStatusDialogState,
+                onDeleteSuccess = onDeleteSuccess
             )
         },
         sheetPeekHeight = dimensionResource(id = R.dimen.height_detail_screen_sheet_peek_height),
@@ -155,7 +159,9 @@ private fun DetailScreenPreview() {
             putUserAttendStatus = { p -> },
             putActiveStatus = { p -> },
             onLogoClick = {},
-            onLogout = {}
+            onLogout = {},
+            onDeleteAccount = {},
+            onDeleteSuccess = {}
         )
     }
 }

@@ -41,7 +41,9 @@ fun HomeScreen(
     refreshProgramList: () -> Unit,
     putActiveStatus: (String) -> Unit,
     onLogoClick: () -> Unit,
-    onLogout: () -> Unit
+    onLogout: () -> Unit,
+    onDeleteAccount: () -> Unit,
+    onDeleteSuccess: () -> Unit
 ) {
     val selectedCategory = rememberSaveable { mutableStateOf(categoryChips[0]) }
     val selectedProgramStatus = rememberSaveable { mutableStateOf(programStatusChips[0]) }
@@ -53,7 +55,9 @@ fun HomeScreen(
                 topAppBarUiState = topAppBarUiState,
                 putActiveStatus = putActiveStatus,
                 onLogoClick = onLogoClick,
-                onLogout = onLogout
+                onLogout = onLogout,
+                onDeleteAccount = onDeleteAccount,
+                onDeleteSuccess = onDeleteSuccess
             )
         },
         snackbarHost = { SnackbarHost(hostState = topAppBarUiState.value.snackbarHostState) },
@@ -156,7 +160,9 @@ private fun HomeScreenPreview() {
             refreshProgramList = {},
             putActiveStatus = { p -> },
             onLogoClick = {},
-            onLogout = {}
+            onLogout = {},
+            onDeleteAccount = {},
+            onDeleteSuccess = {}
         )
     }
 }

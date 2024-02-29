@@ -9,6 +9,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.State
 import androidx.compose.runtime.collectAsState
@@ -32,17 +33,25 @@ fun EeosTopAppBar(
     putActiveStatus: (String) -> Unit,
     onLogoClick: () -> Unit,
     onLogout: () -> Unit,
+    onDeleteAccount: () -> Unit,
+    onDeleteSuccess: () -> Unit,
     memberStatusDialogState: MutableState<Boolean> = remember {
         mutableStateOf(false)
     }
 ) {
+    LaunchedEffect(topAppBarUiState.value.isAccountDeleted) {
+        onDeleteSuccess()
+    }
+
     val deleteAccountDialogState = remember { mutableStateOf(false) }
 
     if (deleteAccountDialogState.value) {
         ConfirmDialog(
             text = stringResource(id = R.string.confirm_dialog_container_delete_account),
             dialogHeight = R.dimen.height_confirm_dialog_delete_account,
-            onConfirmRequest = { /*TODO: 계정 삭제 API 연결*/ },
+            onConfirmRequest = {
+                onDeleteAccount()
+            },
             onDismissRequest = { deleteAccountDialogState.value = false }
         )
     }
@@ -91,6 +100,8 @@ private fun TopAppBarPreview() {
             topAppBarUiState = hiltViewModel<TopAppBarViewModel>().topAppBarUiState.collectAsState(),
             putActiveStatus = { p -> },
             onLogoClick = {},
+            onDeleteAccount = {},
+            onDeleteSuccess = {},
             onLogout = {}
         )
     }

@@ -31,8 +31,6 @@ fun EEOSNavGraph(
         EEOSNavigationActions(navController)
     },
 ) {
-//    val currentNavBackStackEntry by navController.currentBackStackEntryAsState()
-//    val currentRoute = currentNavBackStackEntry?.destination?.route ?: startDestination
     NavHost(
         navController = navController,
         startDestination = startDestination,
@@ -44,34 +42,45 @@ fun EEOSNavGraph(
                     type = NavType.BoolType
                     defaultValue = false
                 },
+                navArgument("isAccountDeleted") {
+                    type = NavType.BoolType
+                    defaultValue = false
+                },
             ),
         ) {
+            var isLogout = it.arguments?.getBoolean(EEOSDestinationsArgs.IS_LOGOUT_ARG) ?: false
+            var isAccountDeleted = it.arguments?.getBoolean(EEOSDestinationsArgs.IS_ACCOUNT_DELETED_ARG) ?: false
+            val loginViewModel = hiltViewModel<LoginViewModel>()
+            val loginUiState = loginViewModel.loginUiState.collectAsState()
+
+            // 최초 로그인
+            if (loginUiState.value.hasTokens) {
+                navActions.navigateToHome()
+            }
+
+            // 자동 로그인
             if (EEOSApplication.prefs.access != null && EEOSApplication.prefs.refresh != null) {
                 navActions.navigateToHome()
-            } else {
-                var isLogout = it.arguments?.getBoolean(EEOSDestinationsArgs.IS_LOGOUT_ARG) ?: false
-                val loginViewModel = hiltViewModel<LoginViewModel>()
-                val loginUiState = loginViewModel.loginUiState.collectAsState()
-
-                if (isLogout) {
-                    run {
-                        (loginViewModel::onLogout)() // 왜 두 번 호출되는지?
-                        isLogout = false
-                    }
-                }
-
-                // postLogin 성공 시 실행
-                if (loginUiState.value.hasTokens) {
-                    navActions.navigateToHome()
-                }
-
-                LoginScreen(
-                    postLogin = { code -> (loginViewModel::postLogin)(code) },
-                    loginUiState = loginUiState,
-                    code = code,
-                )
             }
+
+            // 로그아웃
+            if (isLogout) {
+                (loginViewModel::onLogout)() // 왜 두 번 호출 되는지?
+                isLogout = false
+            }
+
+            if (isAccountDeleted) {
+                (loginViewModel::onDeleteAccount)()
+                isAccountDeleted = false
+            }
+
+            LoginScreen(
+                postLogin = { code -> (loginViewModel::postLogin)(code) },
+                loginUiState = loginUiState,
+                code = code,
+            )
         }
+
         composable(
             EEOSDestinations.HOME_ROUTE,
         ) {
@@ -97,7 +106,11 @@ fun EEOSNavGraph(
                     (topAppBarViewModel::putActiveStatus)(activeStatus)
                 },
                 onLogoClick = {},
-                onLogout = { navActions.navigateToLogin(true) },
+                onLogout = { navActions.navigateToLogin(isLogout = true) },
+                onDeleteAccount = {
+                    (topAppBarViewModel::deleteUser)()
+                },
+                onDeleteSuccess = { navActions.navigateToLogin(isAccountDeleted = true) }
             )
         }
 
@@ -157,7 +170,9 @@ fun EEOSNavGraph(
                     (topAppBarViewModel::putActiveStatus)(activeStatus)
                 },
                 onLogoClick = { navActions.navigateToHome() },
-                onLogout = { navActions.navigateToLogin(true) },
+                onLogout = { navActions.navigateToLogin(isLogout = true) },
+                onDeleteAccount = { (topAppBarViewModel::deleteUser)() },
+                onDeleteSuccess = { navActions.navigateToLogin(isAccountDeleted = true) }
             )
         }
     }
