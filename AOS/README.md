@@ -1,4 +1,4 @@
-# EEOS Android README
+# Android - README.md
 ## 📸 Screen Shots
 |로그인|홈 화면|멤버 상태 변경|행사 세부 내용|출석 상태 선택|
 |:---:|:---:|:---:|:---:|:---:|
