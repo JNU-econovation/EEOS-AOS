@@ -12,4 +12,6 @@ interface InfoRepository {
     suspend fun putActiveStatus(
         requestPutActiveStatusDto: RequestPutActiveStatusDto
     ): ApiResponse<BaseResponse<ResponsePutActiveStatusDto>>
+
+    suspend fun postDeleteUser(): ApiResponse<BaseResponse<Unit>>
 }

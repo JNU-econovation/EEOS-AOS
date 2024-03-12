@@ -53,6 +53,7 @@ object SnackBarMessage {
     const val onActiveStatusChanged = "회원 상태가 변경 되었습니다."
     const val onAttendStatusChanged = "참석 상태가 변경 되었습니다."
     const val onLogout = "성공적으로 로그아웃 되었습니다."
+    const val onDeleteAccount = "회원 탈퇴가 완료되었습니다."
 }
 
 object ProgramStatus {

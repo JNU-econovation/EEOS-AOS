@@ -21,6 +21,7 @@ import kotlinx.coroutines.launch
 data class TopAppBarUiState(
     val isEmpty: Boolean = false,
     val isLoading: Boolean = false,
+    val isAccountDeleted: Boolean = false,
 
     val name: String = "",
     val activeStatus: String = "",
@@ -56,7 +57,6 @@ class TopAppBarViewModel @Inject constructor(
                 }
                 .suspendOnError {
                     val errorCode = getErrorCode(this.errorBody!!.string())
-
                 }
                 .suspendOnException {
                     this.exception
@@ -81,11 +81,33 @@ class TopAppBarViewModel @Inject constructor(
                 }
                 .suspendOnError {
                     val errorCode = getErrorCode(this.errorBody!!.string())
-
                 }
                 .suspendOnException {
                     this.exception
                 }
+        }
+    }
+
+    fun deleteUser() {
+        viewModelScope.launch {
+            infoRepository.postDeleteUser()
+                .suspendOnSuccess {
+                    onDeleteAccount()
+                }
+                .suspendOnError {
+                    val errorCode = getErrorCode(this.errorBody!!.string())
+                }
+                .suspendOnException {
+                    this.exception
+                }
+        }
+    }
+
+    private fun onDeleteAccount() {
+        _topAppBarUiState.update { currentState ->
+            currentState.copy(
+                isAccountDeleted = true
+            )
         }
     }
 }

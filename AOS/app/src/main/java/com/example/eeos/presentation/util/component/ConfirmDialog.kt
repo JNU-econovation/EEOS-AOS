@@ -1,5 +1,6 @@
-package com.example.eeos.presentation.detail.confirmdialog
+package com.example.eeos.presentation.util.component
 
+import androidx.annotation.DimenRes
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -26,10 +27,11 @@ import androidx.compose.ui.window.Dialog
 import com.example.eeos.R
 
 @Composable
-fun ConfirmAttendStatusDialog(
+fun ConfirmDialog(
+    text: String,
+    @DimenRes dialogHeight: Int,
     onConfirmRequest: () -> Unit,
     onDismissRequest: () -> Unit,
-    attendStatus: String
 ) {
     Dialog(
         onDismissRequest = onDismissRequest
@@ -41,7 +43,7 @@ fun ConfirmAttendStatusDialog(
                         id = R.dimen.width_confirm_dialog
                     ),
                     height = dimensionResource(
-                        id = R.dimen.height_confirm_dialog
+                        id = dialogHeight
                     )
                 ),
             shape = RoundedCornerShape(dimensionResource(id = R.dimen.size_corner_20dp)),
@@ -57,10 +59,7 @@ fun ConfirmAttendStatusDialog(
                 verticalArrangement = Arrangement.SpaceBetween
             ) {
                 Text(
-                    text = String.format(
-                        stringResource(R.string.confirm_dialog_container),
-                        attendStatus
-                    ),
+                    text = text,
                     style = MaterialTheme.typography.bodySmall
                 )
                 Row {
@@ -137,10 +136,14 @@ private fun ConfirmDialogButton(onClick: () -> Unit, innerText: String) {
 @Composable
 private fun ConfirmAttendStatusDialogPreview() {
     MaterialTheme {
-        ConfirmAttendStatusDialog(
+        ConfirmDialog(
+            text = String.format(
+                stringResource(R.string.confirm_dialog_container_change_active_status),
+                "출석"
+            ),
+            dialogHeight = R.dimen.height_confirm_dialog_delete_account,
             onConfirmRequest = {},
             onDismissRequest = {},
-            attendStatus = "\"출석\""
         )
     }
 }

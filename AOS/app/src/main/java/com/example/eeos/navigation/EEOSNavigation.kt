@@ -18,13 +18,17 @@ private object EEOSScreens {
 object EEOSDestinationsArgs {
     const val PROGRAM_ID_ARG = "programId"
     const val IS_LOGOUT_ARG = "isLogout"
+    const val IS_ACCOUNT_DELETED_ARG = "isAccountDeleted"
 }
 
 /**
  * Destinations used in the [EEOSActivity]
  */
 object EEOSDestinations {
-    const val LOGIN_ROUTE = "${EEOSScreens.LOGIN_SCREEN}?${EEOSDestinationsArgs.IS_LOGOUT_ARG}={${EEOSDestinationsArgs.IS_LOGOUT_ARG}}"
+    const val LOGIN_ROUTE =
+        EEOSScreens.LOGIN_SCREEN +
+                "?${EEOSDestinationsArgs.IS_LOGOUT_ARG}={${EEOSDestinationsArgs.IS_LOGOUT_ARG}} +" +
+                "&${EEOSDestinationsArgs.IS_ACCOUNT_DELETED_ARG}={${EEOSDestinationsArgs.IS_ACCOUNT_DELETED_ARG}}"
     const val HOME_ROUTE = EEOSScreens.HOME_SCREEN
     const val DETAIL_ROUTE =
         "${EEOSScreens.PROGRAM_DETAIL_SCREEN}?${EEOSDestinationsArgs.PROGRAM_ID_ARG}={${EEOSDestinationsArgs.PROGRAM_ID_ARG}}" // programDetail/${programId}
@@ -34,9 +38,11 @@ object EEOSDestinations {
  * Models the navigation actions in the app.
  */
 class EEOSNavigationActions(private val navController: NavHostController) {
-    fun navigateToLogin(isLogout: Boolean = true) {
+    fun navigateToLogin(isLogout: Boolean = false, isAccountDeleted: Boolean = false) {
         navController.navigate(
-            "${EEOSScreens.LOGIN_SCREEN}?${EEOSDestinationsArgs.IS_LOGOUT_ARG}=$isLogout"
+            EEOSScreens.LOGIN_SCREEN +
+                    "?${EEOSDestinationsArgs.IS_LOGOUT_ARG}=$isLogout" +
+                    "&${EEOSDestinationsArgs.IS_ACCOUNT_DELETED_ARG}=$isAccountDeleted"
         ) {
             // 로그아웃 시도 후 로그인 페이지로 돌아오며
             // 모든 BackStack 제거

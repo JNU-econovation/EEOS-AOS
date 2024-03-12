@@ -80,4 +80,14 @@ class LoginViewModel @Inject constructor(
                 )
         }
     }
+
+    fun onDeleteAccount() {
+        viewModelScope.launch {
+            _loginUiState.value.snackbarHostState
+                .showSnackbar(
+                    message = SnackBarMessage.onDeleteAccount,
+                    duration = SnackbarDuration.Short
+                )
+        }
+    }
 }
