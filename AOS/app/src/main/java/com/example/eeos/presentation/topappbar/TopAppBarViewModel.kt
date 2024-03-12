@@ -90,7 +90,7 @@ class TopAppBarViewModel @Inject constructor(
 
     fun deleteUser() {
         viewModelScope.launch {
-            infoRepository.deleteUser()
+            infoRepository.postDeleteUser()
                 .suspendOnSuccess {
                     onDeleteAccount()
                 }

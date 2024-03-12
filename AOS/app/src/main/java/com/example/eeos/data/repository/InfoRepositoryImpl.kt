@@ -18,6 +18,6 @@ class InfoRepositoryImpl @Inject constructor(
     override suspend fun putActiveStatus(requestPutActiveStatusDto: RequestPutActiveStatusDto): ApiResponse<BaseResponse<ResponsePutActiveStatusDto>> =
         infoDataSource.putActiveStatus(requestPutActiveStatusDto)
 
-    override suspend fun deleteUser(): ApiResponse<BaseResponse<Unit>> =
-        infoDataSource.deleteUser()
+    override suspend fun postDeleteUser(): ApiResponse<BaseResponse<Unit>> =
+        infoDataSource.postDeleteUser()
 }

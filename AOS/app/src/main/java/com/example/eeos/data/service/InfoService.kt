@@ -19,6 +19,6 @@ interface InfoService {
         @Body requestPutActiveStatusDto: RequestPutActiveStatusDto
     ): ApiResponse<BaseResponse<ResponsePutActiveStatusDto>>
 
-    @DELETE("members")
-    suspend fun deleteUser(): ApiResponse<BaseResponse<Unit>>
+    @DELETE("auth/withdraw")
+    suspend fun postDeleteUser(): ApiResponse<BaseResponse<Unit>>
 }
