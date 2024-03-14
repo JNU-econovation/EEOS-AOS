@@ -1,7 +1,7 @@
 ---
 name: Black Company Issue Template
 about: Black Company 이슈 관리 템플릿
-title: ''
+title: "[TYPE] 이슈 제목"
 labels: ''
 assignees: ''
 
