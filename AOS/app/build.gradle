@@ -16,16 +16,16 @@ android {
 
     signingConfigs {
         debugKey {
-            keyAlias KEY_ALIAS_DEBUG
-            keyPassword KEY_PASSWORD_DEBUG
             storeFile file(STORE_FILE_DEBUG)
             storePassword STORE_PASSWORD_DEBUG
+            keyAlias KEY_ALIAS_DEBUG
+            keyPassword KEY_PASSWORD_DEBUG
         }
         releaseKey {
-            keyAlias KEY_ALIAS
-            keyPassword KEY_PASSWORD
             storeFile file(STORE_FILE)
             storePassword STORE_PASSWORD
+            keyAlias KEY_ALIAS
+            keyPassword KEY_PASSWORD
         }
     }
 
@@ -64,6 +64,7 @@ android {
             signingConfig signingConfigs.releaseKey
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
