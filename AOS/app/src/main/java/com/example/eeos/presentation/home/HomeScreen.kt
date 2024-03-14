@@ -23,8 +23,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.eeos.R
-import com.example.eeos.consts.programCategory
 import com.example.eeos.consts.categoryChips
+import com.example.eeos.consts.programCategory
 import com.example.eeos.consts.programStatus
 import com.example.eeos.consts.programStatusChips
 import com.example.eeos.presentation.topappbar.EeosTopAppBar
@@ -41,7 +41,9 @@ fun HomeScreen(
     refreshProgramList: () -> Unit,
     putActiveStatus: (String) -> Unit,
     onLogoClick: () -> Unit,
-    onLogout: () -> Unit
+    onLogout: () -> Unit,
+    onDeleteAccount: () -> Unit,
+    onDeleteSuccess: () -> Unit
 ) {
     val selectedCategory = rememberSaveable { mutableStateOf(categoryChips[0]) }
     val selectedProgramStatus = rememberSaveable { mutableStateOf(programStatusChips[0]) }
@@ -53,7 +55,9 @@ fun HomeScreen(
                 topAppBarUiState = topAppBarUiState,
                 putActiveStatus = putActiveStatus,
                 onLogoClick = onLogoClick,
-                onLogout = onLogout
+                onLogout = onLogout,
+                onDeleteAccount = onDeleteAccount,
+                onDeleteSuccess = onDeleteSuccess
             )
         },
         snackbarHost = { SnackbarHost(hostState = topAppBarUiState.value.snackbarHostState) },
@@ -156,7 +160,9 @@ private fun HomeScreenPreview() {
             refreshProgramList = {},
             putActiveStatus = { p -> },
             onLogoClick = {},
-            onLogout = {}
+            onLogout = {},
+            onDeleteAccount = {},
+            onDeleteSuccess = {}
         )
     }
 }

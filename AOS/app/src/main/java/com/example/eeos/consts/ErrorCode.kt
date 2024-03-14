@@ -19,8 +19,6 @@ const val EDIT_PERMISSION_DENIED = "1005"
 const val PROGRAM_TYPE_CHANGE_DENIED = "1006"
 const val PROGRAM_IN_PROGRESS = "1007"
 
-
-
 /** [2XXX] 행사 참여 상태 변경과 관련된 에러
  * - ATTEND_STATUS_NOT_FOUND : 존재하지 않는 참석 상태입니다.
  * - PREVIOUS_ATTEND_STATUS_INCORRECT : 회원의 이전 상태가 올바르지 않습니다.
@@ -36,8 +34,6 @@ const val PROGRAM_EXPIRED = "2003"
 const val ATTEND_INFO_NOT_FOUND = "2004"
 const val USER_NON_RELATED = "2005"
 
-
-
 /** [3XXX] 멤버 관련 에러
  * - MEMBER_NOT_FOUND : 존재하지 않는 멤버입니다.
  * - ACTIVE_STATUS_NOT_FOUND : 존재하지 않는 활동 상태입니다.
@@ -46,8 +42,6 @@ const val USER_NON_RELATED = "2005"
 const val MEMBER_NOT_FOUND = "3000"
 const val ACTIVE_STATUS_NOT_FOUND = "3001"
 const val ACTIVE_STATUS_BANNED = "3002"
-
-
 
 /** [4XXX] 인증/인가 관련 에러
  * - ACCESS_TOKEN_NOT_FOUND : 액세스 토큰이 존재하지 않습니다.

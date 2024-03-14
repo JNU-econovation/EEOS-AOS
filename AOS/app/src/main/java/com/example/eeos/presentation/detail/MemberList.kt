@@ -27,7 +27,7 @@ import com.example.eeos.consts.AttendStatus
 import com.example.eeos.consts.ProgramType
 import com.example.eeos.consts.attendStatusMap
 import com.example.eeos.domain.model.Member
-import com.example.eeos.presentation.util.ComponentUtil.NonLazyGrid
+import com.example.eeos.presentation.util.component.NonLazyGrid
 
 @Composable
 fun MemberLists(
