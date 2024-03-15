@@ -27,7 +27,7 @@ object EEOSDestinationsArgs {
 object EEOSDestinations {
     const val LOGIN_ROUTE =
         EEOSScreens.LOGIN_SCREEN +
-                "?${EEOSDestinationsArgs.IS_LOGOUT_ARG}={${EEOSDestinationsArgs.IS_LOGOUT_ARG}} +" +
+                "?${EEOSDestinationsArgs.IS_LOGOUT_ARG}={${EEOSDestinationsArgs.IS_LOGOUT_ARG}}" +
                 "&${EEOSDestinationsArgs.IS_ACCOUNT_DELETED_ARG}={${EEOSDestinationsArgs.IS_ACCOUNT_DELETED_ARG}}"
     const val HOME_ROUTE = EEOSScreens.HOME_SCREEN
     const val DETAIL_ROUTE =
