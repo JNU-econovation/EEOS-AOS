@@ -40,7 +40,9 @@ fun EeosTopAppBar(
     }
 ) {
     LaunchedEffect(topAppBarUiState.value.isAccountDeleted) {
-        onDeleteSuccess()
+        if (topAppBarUiState.value.isAccountDeleted) {
+            onDeleteSuccess()
+        }
     }
 
     val deleteAccountDialogState = remember { mutableStateOf(false) }
