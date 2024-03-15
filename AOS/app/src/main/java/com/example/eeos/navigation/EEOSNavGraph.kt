@@ -71,6 +71,7 @@ fun EEOSNavGraph(
                 isLogout = false
             }
 
+            // 회원 탈퇴
             if (isAccountDeleted) {
                 (loginViewModel::onDeleteAccount)()
                 isAccountDeleted = false
