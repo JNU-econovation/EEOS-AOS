@@ -19,8 +19,8 @@ class AddHeaderInterceptor : Interceptor {
 
         val request = authRequest.build()
         val response = chain.proceed(request)
-
         if (response.code == 401) {
+            response.close()
             return reIssueToken(chain, originalRequest, originalRequest.newBuilder().build())
         }
 
