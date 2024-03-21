@@ -28,6 +28,7 @@
 
     <string name="active_status_dialog_save_active_status">회원 상태 저장</string>
     <string name="active_status_dialog_logout">로그아웃</string>
+    <string name="active_status_dialog_privacy_policy">개인정보처리방침</string>
     <string name="active_status_dialog_delete_account">계정을 삭제하고 싶으신가요?</string>
 
 

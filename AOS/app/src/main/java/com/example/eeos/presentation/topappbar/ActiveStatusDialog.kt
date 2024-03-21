@@ -1,9 +1,14 @@
 package com.example.eeos.presentation.topappbar
 
+import android.content.ActivityNotFoundException
+import android.content.Intent
+import android.net.Uri
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -20,12 +25,14 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.window.Dialog
+import androidx.core.content.ContextCompat
 import com.example.eeos.EEOSApplication
 import com.example.eeos.R
 
@@ -38,6 +45,9 @@ fun ActiveStatusDialog(
     onLogout: () -> Unit,
     deleteAccountDialogState: MutableState<Boolean>
 ) {
+    val context = LocalContext.current
+    val policyUri =
+        "https://triangular-attempt-ae3.notion.site/7bfa5c21cf9c4d7fa24387e64540b573?pvs=4"
     val tempActiveStatus = remember { mutableStateOf(activeStatus) }
 
     Dialog(onDismissRequest = onDismissRequest) {
@@ -133,34 +143,53 @@ fun ActiveStatusDialog(
                         )
                     )
                 )
-                Column(
-                    horizontalAlignment = Alignment.End,
-                ) {
-                    SaveActiveStatusButton(
-                        onClick = { onSaveStatusBtnClick(tempActiveStatus.value) }
-                    )
-                    Spacer(
-                        modifier = Modifier.height(
-                            dimensionResource(
-                                id = R.dimen.margin_active_status_dialog_between_long_buttons
-                            )
+                SaveActiveStatusButton(
+                    onClick = { onSaveStatusBtnClick(tempActiveStatus.value) }
+                )
+                Spacer(
+                    modifier = Modifier.height(
+                        dimensionResource(
+                            id = R.dimen.margin_active_status_dialog_between_long_buttons
                         )
                     )
-                    LogoutButton(
-                        onClick = {
-                            EEOSApplication.prefs.access = null
-                            EEOSApplication.prefs.refresh = null
+                )
+                LogoutButton(
+                    onClick = {
+                        EEOSApplication.prefs.access = null
+                        EEOSApplication.prefs.refresh = null
 
-                            onDismissRequest()
-                            onLogout()
-                        }
-                    )
-                    Spacer(
-                        modifier = Modifier.height(
-                            dimensionResource(
-                                id = R.dimen.margin_active_status_dialog_between_long_button_and_text_button
-                            )
+                        onDismissRequest()
+                        onLogout()
+                    }
+                )
+                Spacer(
+                    modifier = Modifier.height(
+                        dimensionResource(
+                            id = R.dimen.margin_active_status_dialog_between_long_button_and_text_button
                         )
+                    )
+                )
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    Text(
+                        text = stringResource(id = R.string.active_status_dialog_privacy_policy),
+                        color = colorResource(id = R.color.gray_500),
+                        style = MaterialTheme.typography.labelSmall,
+                        modifier = Modifier.clickable {
+                            val webIntent: Intent =
+                                Uri
+                                    .parse(policyUri)
+                                    .let { webPage ->
+                                        Intent(Intent.ACTION_VIEW, webPage)
+                                    }
+
+                            try {
+                                ContextCompat.startActivity(context, webIntent, null)
+                            } catch (e: ActivityNotFoundException) {
+                            }
+                        }
                     )
                     Text(
                         text = stringResource(id = R.string.active_status_dialog_delete_account),
