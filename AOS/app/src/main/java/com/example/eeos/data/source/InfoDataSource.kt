@@ -1,5 +1,6 @@
 package com.example.eeos.data.source
 
+import com.example.eeos.EEOSApplication
 import com.example.eeos.data.model.remote.request.RequestPutActiveStatusDto
 import com.example.eeos.data.model.remote.response.ResponseGetActiveStatusDto
 import com.example.eeos.data.model.remote.response.ResponsePutActiveStatusDto
@@ -20,5 +21,5 @@ class InfoDataSource @Inject constructor(
         infoService.putActiveStatus(requestPutActiveStatusDto)
 
     suspend fun postDeleteUser(): ApiResponse<BaseResponse<Unit>> =
-        infoService.postDeleteUser()
+        infoService.postDeleteUser(EEOSApplication.prefs.refresh!!)
 }

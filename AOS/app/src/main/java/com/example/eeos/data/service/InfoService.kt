@@ -6,8 +6,9 @@ import com.example.eeos.data.model.remote.response.ResponsePutActiveStatusDto
 import com.example.eeos.data.model.remote.response.base.BaseResponse
 import com.skydoves.sandwich.ApiResponse
 import retrofit2.http.Body
-import retrofit2.http.DELETE
 import retrofit2.http.GET
+import retrofit2.http.Header
+import retrofit2.http.POST
 import retrofit2.http.PUT
 
 interface InfoService {
@@ -19,6 +20,8 @@ interface InfoService {
         @Body requestPutActiveStatusDto: RequestPutActiveStatusDto
     ): ApiResponse<BaseResponse<ResponsePutActiveStatusDto>>
 
-    @DELETE("auth/withdraw")
-    suspend fun postDeleteUser(): ApiResponse<BaseResponse<Unit>>
+    @POST("auth/withdraw")
+    suspend fun postDeleteUser(
+        @Header(value = "Cookie") refreshToken: String
+    ): ApiResponse<BaseResponse<Unit>>
 }
